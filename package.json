@@ -1,0 +1,21 @@
+{
+  "name": "Elite-Bot",
+  "version": "1.0.0",
+  "description": "Bot made specifically for the Elite Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shadowblazer93",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "discord.js-minesweeper": "^1.0.6",
+    "discord.js-poll-embed": "^1.0.2",
+    "mathjs": "^7.1.0",
+    "moment": "^2.29.1",
+    "ms": "^2.1.2",
+    "salvage.db": "^1.2.2",
+    "weather-js": "^2.0.0"
+  }
+}
