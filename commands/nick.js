@@ -4,6 +4,8 @@ module.exports = {
     name: 'nick',
     description: 'change yours or other\'s nickname',
     execute(message, args){
+        if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
+
         if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('Please give me permissions to send messages.')
             if(!message.member.hasPermission("MANAGE_NICKNAMES")) return message.channel.send('ERROR : You must have the Manage Nicknames permission to change nicknames!')
 

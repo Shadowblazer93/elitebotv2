@@ -4,6 +4,8 @@ module.exports = {
     name: 'vote',
     description: 'Creat a new vote',
     execute(message, args){
+        if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
+
         if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')
         if (!message.guild.me.hasPermission("ADD_REACTIONS")) return message.channel.send('Please give me permissions to react to messages in this channel.');
 

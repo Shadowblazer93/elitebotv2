@@ -5,6 +5,8 @@ module.exports = {
     name: 'role',
     description: 'Add roles to users',
     execute(message, args){
+        if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
+
         if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('I do not have permissions to speak in that channel!').catch(err => {return;})
         if(!message.guild.me.hasPermission("MANAGE_ROLES")) return  message.channel.send('I do not have permissions to manage roles!')
         if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.send('ERROR : Must have Manage Roles permission to add roles')
@@ -15,7 +17,7 @@ module.exports = {
                 .setColor("RED")
 
 
-                let ruser = message.guild.member(message.mentions.users.first()) || message.member || args[0]
+                let ruser = message.guild.members.cache.get(args[0]) || message.mentions.members.first()
                 if(!ruser) return message.channel.send(Erole)
 
                 let rrole = message.mentions.roles.first() || args[1]
@@ -25,7 +27,6 @@ module.exports = {
                     return message.channel.send(`❌ ${ruser} already has that role!`)}
 
                  let roleName = message.guild.roles.cache.find(r => r.name === rrole)
-
 
                  message.member.roles.add(roleName).then(() => {
                      message.channel.send(`Successfully added the role to ${ruser}`)

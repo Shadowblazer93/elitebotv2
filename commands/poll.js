@@ -1,9 +1,12 @@
 const Discord = require('discord.js')
+const { i } = require('mathjs')
 
 module.exports = {
     name: 'poll',
     description: 'Create a new poll',
     execute(message, args){
+        if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
+
         if (!message.member.hasPermission("MANAGE_MESSAGES"))return message.channel.send('ERROR : You need to have Manage Messages permission to create new polls!')
         if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.') 
         const Epoll = new Discord.MessageEmbed()

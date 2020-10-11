@@ -4,15 +4,29 @@ module.exports = {
     name: 'rate',
     description: 'Rates the user out of 10',
     execute(message, args){
-        if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.') 
-            const Erate = new Discord.MessageEmbed()
+        const Erate = new Discord.MessageEmbed()
             .setTitle('Rate')
-            .setDescription('**Usage** : ``;rate (user)``')
+            .setDescription('**Usage** : ``;rate [topic]``')
             .setColor("RED")
 
-            let rateduser = message.mentions.members.first() || message.member || args[1]
+        
+        if(message.channel.type == 'dm'){
+            let dmrate = args.slice(0).join(" ")
+            if(!dmrate) return message.channel.send(Erate)
+
+            let dmrateno = Math.floor(Math.random() * 11)
+
+            message.channel.send(`I would rate \`\`${dmrate}\`\` a \`\`` + dmrateno + `/10\`\``).catch(err => {return;})
+        return}
+
+
+
+
+        if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.') 
+            
+            let rateduser = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member
             if(!rateduser) return rateduser = message.channel.send('Please provide a valid user from this server to rate');
-            if(rateduser.id == 411548232133640203) return message.channel.send(':heartpulse:  I love my master far too much to put it in numbers.')
+            if(rateduser.id == 411548232133640203) return message.channel.send('I would rate my master ``10/10`` :heartpulse:')
             if(rateduser.id == 728176491514298478) return message.channel.send('Me? I don\'t know what to rate myself.')
 
             let ratenumber = Math.floor(Math.random() * 11)

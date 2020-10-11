@@ -5,6 +5,8 @@ module.exports = {
     name: 'user',
     description: 'Tells information about the user',
     execute(message, args){
+        if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
+
         if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('I do not have permissions to speak in that channel!').catch(err => {return;})
 
         let iuser = member = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member

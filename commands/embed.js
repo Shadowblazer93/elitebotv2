@@ -4,6 +4,7 @@ module.exports = {
     name: 'embed',
     description: 'Format your text in a neat and readable way.',
     execute(message, args){
+        if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
         if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('Please give me permissions to send messages.')
 
             const embedsyn = new Discord.MessageEmbed()
