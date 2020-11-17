@@ -24,7 +24,7 @@ module.exports = {
                 if (ballnumber === 5 ) return message.channel.send('I don\'t know')
                 if (ballnumber === 6 ) return message.channel.send('Definitely not')
                 if (ballnumber === 7 ) return message.channel.send('I don\'t know! One thing i do is that I only love my creator : Shadowblazer :heartpulse:')
-                if (ballnumber === 8 ) return message.channel.send('Does I look like I want to answer that?')
+                if (ballnumber === 8 ) return message.channel.send('Does it look like I want to answer that?')
                 if (ballnumber === 9 ) return message.channel.send('I\'m not allowed to give my opinion on that')
                 if (ballnumber === 10) return message.channel.send('Damn... I kinda don\'t care')
                 if (ballnumber === 11) return message.channel.send('I agree')

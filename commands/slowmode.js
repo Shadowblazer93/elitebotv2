@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { re } = require('mathjs');
+const mathjs = require('mathjs');
+const ms = require('ms')
 
 module.exports = {
     name: 'slowmode',
@@ -13,22 +14,29 @@ module.exports = {
 
         const Eslowmode = new Discord.MessageEmbed()
         .setTitle('Slowmode')
-        .setDescription('**Usage** : ``;slowmode [time]``\n**Permissions** : Manage_Channelss')
+        .setDescription('**Usage** : ``;slowmode [time] (channel)``\n**Permissions** : Manage_Channelss')
         .setColor("RED")
 
-        var slowtime = message.content.split(' ').slice(1).join(' ')
-            if(!slowtime) return message.channel.send(Eslowmode)
-            if(slowtime < 0) return message.reply('Please enter a valid number')
+        var slowmodetime = message.content.split(' ').slice(1).join(' ')
+        if(!slowmodetime) return message.channel.send(Eslowmode)
 
-            if(slowtime > 21600) return message.reply('Please choose a number below 21600 (6 hours)')
-            if(slowtime == 'off') return message.channel.setRateLimitPerUser(0).then (message.channel.send('Removed slowmode from this channel.'))
-            if(slowtime == 'max') return message.channel.setRateLimitPerUser(21600).then (message.channel.send('Successfully changed the slowmode time to ``6 hours``'))
+        let slowtime = ms(slowmodetime)
+        let timefinal = (slowtime/1000)
 
-            if(isNaN(slowtime)) return message.channel.send('❌ Please enter a valid number!')
+        let schannel = message.channel
+        
+            if(!slowmodetime) return message.channel.send(Eslowmode)
+            if(slowmodetime == 'off') return schannel.setRateLimitPerUser(0).then (message.channel.send(`Removed slowmode from ${message.channel}`))
+            if(slowmodetime == 'max') return schannel.channel.setRateLimitPerUser(21600).then (message.channel.send('Successfully changed the slowmode time to ``6 hours``'))
+            if(timefinal < 0) return message.reply('❌ Please enter a valid number!')
+            if(timefinal > 21600) return message.reply('Please choose a number below 21600 (6 hours)')
+            if(isNaN(timefinal)) return message.channel.send('❌ Please enter a valid number!')
 
-            message.channel.setRateLimitPerUser(slowtime)
+            schannel.setRateLimitPerUser(timefinal).catch(err => {
+                return message.channel.send('❌ Please enter a valid number!')
+            })
 
-            message.channel.send('Changed the slowmode time to : ``' + slowtime + ' seconds``').catch(err => {
+            message.channel.send('Changed the slowmode time to : ``' + slowmodetime + '``').catch(err => {
                 message.channel.send('Im having a headache. Please try again later.')
             })
     }

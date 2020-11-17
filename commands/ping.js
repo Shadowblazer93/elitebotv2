@@ -9,7 +9,7 @@ module.exports = {
         const Eping = new Discord.MessageEmbed()
             .setTitle(':ping_pong: Pong!')
             .setDescription("```Current ping : " + Math.round(bot.ws.ping) + ' ms```')
-            .setFooter(`Elite Bot created by Shadowblazer93`, "https://images-ext-1.discordapp.net/external/bRWN5fB6sJqwpN9xMQwVYk5mnpZVJHz_9A3X8taN80o/https/cdn.discordapp.com/avatars/411548232133640203/2046bbd6807aac07513ce80020116148.webp")
+            .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/a_c955646bfb90ce606b888800d98f236b.webp")
             .setColor("GREEN")
 
         if(message.channel.type == 'dm'){
