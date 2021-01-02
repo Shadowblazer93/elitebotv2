@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'chtopic',
+    name: 'topic',
     description: 'Sets the topic of the channel.',
     execute(message, args){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
@@ -11,8 +11,8 @@ module.exports = {
 
         const Etopic = new Discord.MessageEmbed()
         .setTitle('Channel Topic')
-        .setDescription('**Usage** : ``;chtopic [#channel] [topic]``\n**Permissions** : Manage_Channels') 
-        .setColor("RED")
+        .setDescription('**Usage** : ``;topic [#channel] [topic]``\n**Permissions** : Manage_Channels') 
+        .setColor("BLUE")
 
         const Echtopicerr = new Discord.MessageEmbed()
             .setTitle('❌ ERROR')

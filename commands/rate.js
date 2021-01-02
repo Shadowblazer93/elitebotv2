@@ -16,7 +16,11 @@ module.exports = {
 
             let dmrateno = Math.floor(Math.random() * 11)
 
-            message.channel.send(`I would rate \`\`${dmrate}\`\` a \`\`` + dmrateno + `/10\`\``).catch(err => {return;})
+            let ratemessage = (`I would rate ${dmrate} a \`\`` + dmrateno + `/10\`\``)
+
+            message.channel.send(ratemessage.replace('my','your'))
+
+            // message.channel.send(`I would rate \`\`${dmrate}\`\` a \`\`` + dmrateno + `/10\`\``).catch(err => {return;})
         return}
 
 
@@ -25,13 +29,16 @@ module.exports = {
         if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.') 
             
             let rateduser = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member
-            if(!rateduser) return rateduser = message.channel.send('Please provide a valid user from this server to rate');
-            if(rateduser.id == 411548232133640203) return message.channel.send('I would rate my master ``10/10`` :heartpulse:')
-            if(rateduser.id == 728176491514298478) return message.channel.send('Me? I don\'t know what to rate myself.')
 
             let ratenumber = Math.floor(Math.random() * 11)
-            message.channel.send(`I would rate ${rateduser} a \`\`` +  ratenumber + `/10\`\``).catch(err => {
-                message.channel.send('That username is too cringe to rate.')
-            })
+
+            let ratedtopic = args.slice(0).join(" ")
+
+
+            if(!ratedtopic) {return message.channel.send(`I would rate ${message.member} a \`\`` + ratenumber + `/10\`\``)} else {
+            let ratedmsg = (`I would rate ${ratedtopic} a \`\`` + ratenumber + `/10\`\``)
+            message.channel.send(ratedmsg.replace('my','your'))
+            }
+
+        }
     }
-}

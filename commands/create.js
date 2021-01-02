@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'chcreate',
+    name: 'create',
     description: 'Create channels quickly',
     execute(message, args){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
@@ -11,8 +11,8 @@ module.exports = {
 
         const Echcreate = new Discord.MessageEmbed()
         .setTitle('Channel Create')
-        .setDescription('**Usage** : ``;chcreate [name]``\n**Permissions** : Manage_Channels')
-        .setColor("RED")
+        .setDescription('**Usage** : ``;create [channel name]``\n**Permissions** : Manage_Channels')
+        .setColor("BLUE")
 
         let chtag = args.slice(0).join(" ")
         if(!chtag) return message.channel.send(Echcreate)

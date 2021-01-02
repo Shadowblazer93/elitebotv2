@@ -3,10 +3,11 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'dm',
     description:'DMs you the help command',
-    execute(message, args){
-    if(message.channel.type == 'dm') return message.channel.send(`Try doing ;help instead!`)
+    execute(message, args, bot){
+    if(message.channel.type == 'dm') return message.channel.send(`We are already in DMs! Type \`\`;help\`\` to view my help page.`)
     if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')
 
+    const Ecmds = new Discord.MessageEmbed()
     .setTitle('Commands for Elite Bot')
     .setDescription('Elite bot uses ``;`` prefix before all her commands.\n**Command Arguments**\n``[]`` - required argument\n``()`` - optional argument\n*Adding these symbols is not required when executing commands.*')
     .addField('View A Command\'s Syntax','To see how to view a command,\nType the prefix and the command\'s name\nFor example: ``;help ;invite``')
@@ -25,6 +26,6 @@ module.exports = {
                 return message.reply('Please turn on your direct messages!').catch(err => {return;})
             })
 
-            message.reply(`Please check your DMs.`)
+            message.channel.send(`✅ Sent the help page to you ${message.author}.`)
     }
 }

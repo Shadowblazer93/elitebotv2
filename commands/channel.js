@@ -8,9 +8,8 @@ module.exports = {
         if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')
 
             const Echannel = new Discord.MessageEmbed()
-            .setTitle('Channel command')
-            .setDescription('The sub prefix for channel commands is ``;ch``')
-            .addField('Commands','``;chcreate [name]``\n``;chdelete [#channel]``\n``;chtopic [channel] [topic]``')
+            .setTitle('Channel commands')
+            .setDescription('```;create\n;delete\n;clone\n;topic```')
             .setColor("RED")
 
             message.channel.send(Echannel).catch(err => {

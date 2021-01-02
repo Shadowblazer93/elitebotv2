@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 module.exports = {
-    name: 'chdelete',
+    name: 'delete',
     description: 'Delete channels quickly',
     execute(message, args){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
@@ -11,14 +11,14 @@ module.exports = {
 
         const Echdelete = new Discord.MessageEmbed()
         .setTitle('Channel Delete')
-        .setDescription('**Usage** : ``;chdelete [#channel]``\n**Permissions** : Manage_Channels')
+        .setDescription('**Usage** : ``;delete [#channel]``\n**Permissions** : Manage_Channels')
         .setColor("RED")
 
         let chtag = message.mentions.channels.first()
         if(!chtag) return message.channel.send(Echdelete)
 
         const Econfirmation = new Discord.MessageEmbed()
-        .setDescription(`Are you sure you want to delete ${chtag}?\nType 'yes' to confirm`)
+        .setDescription(`Are you sure you want to delete ${chtag}?\nType \`\`YES\`\` to confirm.`)
         .setColor('BLUE')
 
         message.channel.send(Econfirmation)
