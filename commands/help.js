@@ -10,13 +10,13 @@ module.exports = {
             .setDescription('Elite bot uses ``;`` prefix before all her commands.\n**Command Arguments**\n``[]`` - required argument\n``()`` - optional argument\n*Adding these symbols is not required when executing commands.*')
             .addField('View A Command\'s Syntax','To see how to view a command,\nType the prefix and the command\'s name\nFor example: ``;help ;invite``')
             .addField('Elite bot Support Server','Need help? [Click to Join the Support Server](https://discord.gg/smBNsAX)')
-            .addField(':pizza:  General Commands','```;help\n;dm\n;invite\n;user\n ```', true)
-            .addField(':woman_detective:  Moderator Commands', '```;kick\n;ban\n;nick\n;role\n;clear\n;channel\n;slowmode\n```', true)
-            .addField(':busts_in_silhouette:  Social commands','```;embed\n;poll\n;vote\n;announce\n ```', true)
-            .addField(':pager:  Informational commands','```;weather\n;math```', true)
-            .addField(':womans_hat:  Fun commands','```;8ball\n;rate```', true)
-            .addField(':newspaper:  Debug Commands', '```;ping\n;info```', true)
-            .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/a_c955646bfb90ce606b888800d98f236b.webp")
+
+            .addField(':pizza:  General Commands','```;help\n;dm\n;user\n;ping\n;info\n;invite```', true)
+            .addField(':busts_in_silhouette:  Social commands','```;embed\n;poll\n;vote\n \n \n ```', true)
+            .addField(':womans_hat:  Fun commands','```;8ball\n;rate\n;weather\n;coinflip\n;minesweeper\n ```', true)
+            .addField(':woman_detective:  Moderator Commands', '```;warn\n;kick\n;ban\n;nick\n;role\n;clear\n;slowmode\n;role            (W.I.P)```', true)
+            .addField(':newspaper:  Channel commands', '```;nuke\n;clone\n;topic\n;create\n;delete\n \n \n ```', true)
+            .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/a_7e31936761645c6ba7c3c42cd58dbe8a.png?size=256")
             .setColor(0xff66ff)
 
         if(message.channel.type == 'dm') return message.channel.send(Ecmds);
@@ -30,7 +30,4 @@ module.exports = {
             })
 
     }
-
 }
-
-let lmao = `help dm invite ,kick ban channel clear role removerole, weather math ,embed poll vote announce giveaway, 8ball rate, ping info user, links` 

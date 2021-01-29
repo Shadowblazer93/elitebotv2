@@ -18,7 +18,7 @@ module.exports = {
                 let clearnum = args[0]
                 if(!clearnum) return message.reply(Eclear)
                 if(clearnum === '0') return message.reply('But why... why would you do that')
-                if(clearnum > 100) return message.reply("Please choose a number below 100")
+                if(clearnum > 99) return message.reply("Please choose a number below 100")
                 if(clearnum < 0) return message.reply('Please choose a number greater than 0 :pensive: ')
                 if (isNaN(clearnum)) return message.reply('Please specify a number')
         else
