@@ -5,11 +5,11 @@ module.exports = {
     name: 'ping',
     description: 'Gets the latency between you and the bot.',
     execute(message, args, bot){
-        
+
         const Eping = new Discord.MessageEmbed()
             .setTitle(':ping_pong: Pong!')
             .setDescription("```Current ping : " + Math.round(bot.ws.ping) + ' ms```')
-            .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/a_7e31936761645c6ba7c3c42cd58dbe8a.png?size=256")
+            .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/9524daf0c76b4ffa8406e587e7607a96.png?size=256")
             .setColor("GREEN")
 
         if(message.channel.type == 'dm'){

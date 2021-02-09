@@ -6,6 +6,11 @@ const config = require('./config.json')
 const PREFIX = config.prefix
 var version = 'Alpha 2.0.';
 
+const Ewelcome = new Discord.MessageEmbed()
+.setTitle('Thank you for inviting EliteBot')
+.setDescription(`Hello! My name is Elite bot.\nTo get to know more about me type \`;help\``)
+.setColor(0xff66ff)
+
 bot.commands = new Discord.Collection();
 const commandfiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 for(const file of commandfiles){
@@ -21,6 +26,11 @@ bot.on('ready', () =>{
 }, 20000);
 })
 
+bot.on("guildCreate", guild => {
+  const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
+  channel.send(Ewelcome)
+})
+
 bot.on('message',async message =>{
     if(!message.content.startsWith(PREFIX) || message.author.bot) return;
 
@@ -30,7 +40,7 @@ bot.on('message',async message =>{
     if (!bot.commands.has(command)) return;
 
     try {
-        bot.commands.get(command).execute(message, args,bot)    
+        bot.commands.get(command).execute(message, args,bot)
     } catch (error) {
         console.log(error)
         message.reply('❔ An error has occured.')

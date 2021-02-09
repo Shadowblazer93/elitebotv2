@@ -5,7 +5,7 @@ module.exports = {
     description: 'Give a steam key to a user',
     execute(message, args){
             if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
-            
+
             if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('Please give me permissions to send messages.')
             if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('ERROR : Only admins can use this command!')
 
@@ -25,7 +25,7 @@ module.exports = {
             if(!steamkey.includes('-')) return message.channel.send('Please enter a valid steam key!')
 
             let steamgame = args.slice(2).join(" ")
-            if(!steamgame) return message.channel.send('ur mom')
+            if(!steamgame) return message.channel.send('Please enter the game\'s name!')
 
             const Esteaminfo = new Discord.MessageEmbed()
             .setTitle('You have won a steam key! :tada:')
