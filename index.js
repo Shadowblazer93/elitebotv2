@@ -4,7 +4,6 @@ const fs = require('fs');
 const mathjs = require('mathjs');
 const config = require('./config.json')
 const PREFIX = config.prefix
-var version = 'Alpha 2.0.';
 
 const Ewelcome = new Discord.MessageEmbed()
 .setTitle('Thank you for inviting EliteBot')
@@ -40,10 +39,10 @@ bot.on('message',async message =>{
     if (!bot.commands.has(command)) return;
 
     try {
-        bot.commands.get(command).execute(message, args,bot)
+        bot.commands.get(command).execute(message,args,bot)
     } catch (error) {
         console.log(error)
-        message.reply('❔ An error has occured.')
+        message.channel.send('❔ An error has occured.')
     }
     })
 

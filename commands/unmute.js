@@ -22,9 +22,10 @@ module.exports = {
         let nuser = message.guild.members.cache.get(args[0]) || message.mentions.members.first()
         if(!nuser) return message.channel.send(Eunmute)
 
-        const Enutesuccess = new Discord.MessageEmbed()
-        .setDescription(`Successfully unmuted ${nuser}`)
-        .setColor("GREEN")
+        let nreason = args.slice(1).join(" ")
+        if(!nreason) nreason = 'Undefined'
+
+        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
 
         const Enutesetup = new Discord.MessageEmbed()
         .setTitle('Set up the muted role.')
@@ -35,10 +36,20 @@ module.exports = {
         .setDescription(`${nuser} is not muted!`)
         .setColor("RED")
 
+        const Enutesuccess = new Discord.MessageEmbed()
+        .setAuthor(`${nuser.user.username}#${nuser.user.discriminator} has been muted`, nuser.user.displayAvatarURL({dynamic:true}))
+        .addField('User',`${nuser}`, true)
+        .addField('Moderator',`${message.author}`, true)
+        .addField('Reason', nreason)
+        .setColor("GREEN")
+        .setTimestamp()
+
         let fetchedrole = message.guild.roles.cache.find(r=> r.name === 'Muted-EB')
         if(fetchedrole){
           if(nuser.roles.cache.has(fetchedrole.id)){
-            nuser.roles.remove(fetchedrole).then(() => {message.channel.send(Enutesuccess)})
+            nuser.roles.remove(fetchedrole).then(() => {
+              message.channel.send(Enutesuccess)
+            if(modchannel) modchannel.send(Enutesuccess)})
           } else {
             message.channel.send(Enutealreadyhas)
           }

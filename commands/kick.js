@@ -17,20 +17,24 @@ module.exports = {
 
         let kuser = message.guild.members.cache.get(args[0]) || message.mentions.members.first()
         if(!kuser) return message.channel.send(Ekick)
-        
+
         let kreason = args.slice(1).join(" ")
         if(!kreason) kreason = 'Undefined'
 
+        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+
         const Eked = new Discord.MessageEmbed()
-        .setAuthor(`${kuser.user.username}#${kuser.user.discriminator} has been KICKED`, kuser.user.displayAvatarURL({dynamic:true}))
+        .setAuthor(`${kuser.user.username}#${kuser.user.discriminator} has been kicked`, kuser.user.displayAvatarURL({dynamic:true}))
         .addField('User',kuser, true)
         .addField('Moderator',message.author, true)
         .addField('Reason',kreason)
-        .setColor("BLUE")
+        .setColor(0xff66ff)
+        .setTimestamp()
 
         if(kuser) {
             kuser.kick(kreason).then(() => {
-               message.channel.send(Eked) 
+               message.channel.send(Eked)
+               if(modchannel) modchannel.send(Eked)
             }).catch(err => {
             message.reply(' Either I do not have permissions or that person is a moderator/admin . Place my role at the top in your Server\'s role settings.') })
         } else {

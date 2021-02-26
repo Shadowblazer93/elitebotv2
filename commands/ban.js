@@ -22,6 +22,8 @@ module.exports = {
         let breason = args.slice(1).join(" ")
         if(!breason) breason = 'Undefined'
 
+        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+
         const Ebanned = new Discord.MessageEmbed()
         .setAuthor(`${buser.user.username}#${buser.user.discriminator} has been banned`, buser.user.displayAvatarURL({dynamic:true}))
         .addField('User',`${buser}`, true)
@@ -29,7 +31,10 @@ module.exports = {
         .addField('Reason', breason)
         .setColor("BLUE")
 
-        buser.ban({reason: breason}).catch(err => {
+        buser.ban({reason: breason}).then(() => {
+          message.channel.send(Ebanned)
+          if(modchannel) modchannel.send(Ebanned)
+        }).catch(err => {
             message.channel.send(`I can't ban someone with a role higher than me!`)
         })
     }

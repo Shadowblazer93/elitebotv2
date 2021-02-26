@@ -19,9 +19,6 @@ module.exports = {
         let muser = message.guild.members.cache.get(args[0]) || message.mentions.members.first()
         if(!muser) return message.channel.send(Emute)
 
-        const Emutesuccess = new Discord.MessageEmbed()
-        .setDescription(`Successfully muted ${muser}`)
-        .setColor("GREEN")
 
         const Emutesetup = new Discord.MessageEmbed()
         .setTitle('Set up the muted role.')
@@ -32,6 +29,19 @@ module.exports = {
         .setDescription(`${muser} is already muted!`)
         .setColor("RED")
 
+        let Mreason = args.slice(1).join(" ")
+        if(!Mreason) Mreason = 'Undefined'
+
+        const Emutesuccess = new Discord.MessageEmbed()
+        .setAuthor(`${muser.user.username}#${muser.user.discriminator} has been muted`, muser.user.displayAvatarURL({dynamic:true}))
+        .addField('User',`${muser}`, true)
+        .addField('Moderator',`${message.author}`, true)
+        .addField('Reason', Mreason)
+        .setColor(0xFFFF00)
+        .setTimestamp()
+
+        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+
 
         let fetchedrole = message.guild.roles.cache.find(r=> r.name === 'Muted-EB')
         if(fetchedrole){
@@ -40,6 +50,7 @@ module.exports = {
 
           if(muser){muser.roles.add(fetchedrole.id).then(() => {
             message.channel.send(Emutesuccess)
+            if(modchannel) modchannel.send(Emutesuccess)
           }).catch(err => {message.channel.send('The muted role is higher in heirarchy to my role!\nGo to the roles tab and set my role to the top.')})
           return;
         }}

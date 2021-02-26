@@ -25,14 +25,9 @@ module.exports = {
 
 
         message.channel.awaitMessages(m => m.author.id == message.author.id,
-            {max: 1, time: 10000}).then(collected => {
-                    if (collected.first().content.toLowerCase() == 'yes') {
-                            chtag.delete()
-                            message.channel.send('✅  Sucessfully deleted the channel.').catch(err => {return;})
-                    }
-                    else {message.channel.send('**Operation Cancelled** : Confirmation Declined')}      
-            }).catch(() => {
-                    message.reply('**Operation Cancelled** : Time ran out.');
-            });
+            {max: 1, time: 10000}).then(collected => {if (collected.first().content.toLowerCase() == 'yes'){chtag.delete()
+            message.channel.send('✅  Sucessfully deleted the channel.').catch(err => {return;})
+            } else {message.channel.send('**Operation Cancelled** : Confirmation Declined')}
+            }).catch(() => {message.reply('**Operation Cancelled** : Time ran out.')});
     }
 }

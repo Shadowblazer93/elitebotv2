@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 
 module.exports = {
     name: 'vote',
-    description: 'Creat a new vote',
+    description: 'Create a new vote',
     execute(message, args){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
 
