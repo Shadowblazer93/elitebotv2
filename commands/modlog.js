@@ -18,10 +18,18 @@ module.exports = {
         .setColor("RED")
 
         const Emodsuccess = new Discord.MessageEmbed()
-        .setDescription('Successfully created a Modlog channel.')
+        .setDescription('Successfully created a Modlog channel.\n \n**NOTE**: You can change the channel name\nbut it must include `modlog`')
         .setColor("GREEN")
 
-        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+        const Emodtime = new Discord.MessageEmbed()
+        .setDescription('Time ran out')
+        .setColor("RED")
+
+        const Emodfail = new Discord.MessageEmbed()
+        .setDescription('Operation Cancelled')
+        .setColor("RED")
+
+        let modchannel = message.guild.channels.cache.find(r => r.name.includes('modlog'))
         if(modchannel) return message.channel.send(Ealreadythere)
 
         async function msgstuff() {
@@ -39,9 +47,11 @@ module.exports = {
           message.channel.send(Emodsuccess)
           msg.delete()
         } else {
-          message.reply('you reacted with a thumbs down.');
+          msg.delete()
+          message.channel.send(Emodfail);
         }}).catch(collected => {
-        message.reply('you reacted with neither a thumbs up, nor a thumbs down.');
+        msg.delete()
+        message.channel.send(Emodtime);
         });
         }
 

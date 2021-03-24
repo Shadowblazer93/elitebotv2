@@ -40,7 +40,7 @@ module.exports = {
         .setColor(0xFFFF00)
         .setTimestamp()
 
-        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+        let modchannel = message.guild.channels.cache.find(r => r.name.includes('modlog'))
 
 
         let fetchedrole = message.guild.roles.cache.find(r=> r.name === 'Muted-EB')

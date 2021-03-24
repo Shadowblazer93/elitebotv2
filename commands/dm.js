@@ -15,7 +15,7 @@ module.exports = {
             .addField(':pizza:  General Commands','```;help\n;dm\n;user\n;ping\n;info\n;invite```', true)
             .addField(':busts_in_silhouette:  Social commands','```;embed\n;poll\n;vote\n \n \n ```', true)
             .addField(':womans_hat:  Fun commands','```;8ball\n;rate\n;weather\n;coinflip\n;minesweeper\n ```', true)
-            .addField(':woman_detective:  Moderator Commands', '```;modlog\n;warn\n;kick\n;ban\n;nick\n;role            (W.I.P)\n;mute\n;unmute\n ```', true)
+            .addField(':woman_detective:  Moderator Commands', '```;modlog\n;warn\n;kick\n;ban\n;nick\n;role            (W.I.P)\n;mute\n;unmute\n;report```', true)
             .addField(':newspaper:  Channel commands', '```;nuke\n;clone\n;topic\n;create\n;delete\n;lock\n;unlock\n;slowmode\n;clear```', true)
             .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/9524daf0c76b4ffa8406e587e7607a96.png?size=256")
             .setColor(0xff66ff)

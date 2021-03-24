@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const { re } = require('mathjs');
 
 module.exports = {
     name: 'warn',
@@ -19,7 +18,7 @@ module.exports = {
         let reason = args.slice(1).join(" ");
         if(!reason) reason = 'Undefined'
 
-        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+        let modchannel = message.guild.channels.cache.find(r => r.name.includes('modlog'))
 
         const Eset = new Discord.MessageEmbed()
         .setAuthor(`${wuser.user.username}#${wuser.user.discriminator} has been warned`, wuser.user.displayAvatarURL({dynamic:true}))

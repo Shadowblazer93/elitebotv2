@@ -21,7 +21,7 @@ module.exports = {
         let kreason = args.slice(1).join(" ")
         if(!kreason) kreason = 'Undefined'
 
-        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+        let modchannel = message.guild.channels.cache.find(r => r.name.includes('modlog'))
 
         const Eked = new Discord.MessageEmbed()
         .setAuthor(`${kuser.user.username}#${kuser.user.discriminator} has been kicked`, kuser.user.displayAvatarURL({dynamic:true}))

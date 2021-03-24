@@ -22,7 +22,7 @@ module.exports = {
         let breason = args.slice(1).join(" ")
         if(!breason) breason = 'Undefined'
 
-        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+        let modchannel = message.guild.channels.cache.find(r => r.name.includes('modlog'))
 
         const Ebanned = new Discord.MessageEmbed()
         .setAuthor(`${buser.user.username}#${buser.user.discriminator} has been banned`, buser.user.displayAvatarURL({dynamic:true}))

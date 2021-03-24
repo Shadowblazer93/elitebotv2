@@ -25,7 +25,7 @@ module.exports = {
         let nreason = args.slice(1).join(" ")
         if(!nreason) nreason = 'Undefined'
 
-        let modchannel = message.guild.channels.cache.find(r => r.name === 'modlog')
+        let modchannel = message.guild.channels.cache.find(r => r.name.includes('modlog'))
 
         const Enutesetup = new Discord.MessageEmbed()
         .setTitle('Set up the muted role.')
