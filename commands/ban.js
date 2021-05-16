@@ -31,6 +31,8 @@ module.exports = {
         .addField('Reason', breason)
         .setColor("BLUE")
 
+        if(buser.id === message.author.id) return message.channel.send('Bruh why ban yourself u dum or something?')
+
         buser.ban({reason: breason}).then(() => {
           message.channel.send(Ebanned)
           if(modchannel) modchannel.send(Ebanned)

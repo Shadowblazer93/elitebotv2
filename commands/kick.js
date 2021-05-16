@@ -31,6 +31,8 @@ module.exports = {
         .setColor(0xff66ff)
         .setTimestamp()
 
+        if(kuser.id === message.author.id) return message.channel.send('Bruh why kick yourself u dum or something?')
+
         if(kuser) {
             kuser.kick(kreason).then(() => {
                message.channel.send(Eked)
