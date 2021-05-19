@@ -18,7 +18,7 @@ module.exports = {
         let contentlol = message.content
         if(!contentlol.includes('|')) return message.channel.send(Echoose)
         let choose2 = contentlol.split('|')
-        let choose1 = choose2[0].substring(8)
+        let choose1 = choose2[0].substring(7)
 
         let choicenumber = Math.floor(Math.random() * 2)
 
