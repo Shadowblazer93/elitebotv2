@@ -1,5 +1,5 @@
 {
-  "name": "Elite-Bot",
+  "name": "elite-bot",
   "version": "1.0.0",
   "description": "Bot made specifically for the Elite Server",
   "main": "index.js",
@@ -13,10 +13,11 @@
     "discord.js-minesweeper": "^1.0.6",
     "discord.js-poll-embed": "^1.0.2",
     "dotenv": "^8.2.0",
-    "mathjs": "^7.1.0",
+    "mathjs": "^7.6.0",
     "moment": "^2.29.1",
     "ms": "^2.1.2",
     "salvage.db": "^1.2.2",
-    "weather-js": "^2.0.0"
+    "weather-js": "^2.0.0",
+    "youtube-search": "^1.1.6"
   }
 }

@@ -37,7 +37,7 @@ module.exports = {
         .setColor("RED")
 
         const Enutesuccess = new Discord.MessageEmbed()
-        .setAuthor(`${nuser.user.username}#${nuser.user.discriminator} has been muted`, nuser.user.displayAvatarURL({dynamic:true}))
+        .setAuthor(`${nuser.user.username}#${nuser.user.discriminator} has been unmuted`, nuser.user.displayAvatarURL({dynamic:true}))
         .addField('User',`${nuser}`, true)
         .addField('Moderator',`${message.author}`, true)
         .addField('Reason', nreason)

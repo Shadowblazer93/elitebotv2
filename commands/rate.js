@@ -13,11 +13,9 @@ module.exports = {
         if(message.channel.type == 'dm'){
             let dmrate = args.slice(0).join(" ")
             if(!dmrate) return message.channel.send(Erate)
-
             let dmrateno = Math.floor(Math.random() * 11)
-
             let ratemessage = (`I would rate ${dmrate} a \`\`` + dmrateno + `/10\`\``)
-
+            
             message.channel.send(ratemessage.replace('my','your'))
 
             // message.channel.send(`I would rate \`\`${dmrate}\`\` a \`\`` + dmrateno + `/10\`\``).catch(err => {return;})
