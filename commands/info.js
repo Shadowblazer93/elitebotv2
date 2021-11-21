@@ -6,10 +6,12 @@ module.exports = {
     execute(message, args){
 
         const Einfo = new Discord.MessageEmbed()
-            .setThumbnail('https://cdn.discordapp.com/avatars/728176491514298478/61125c07e7c80e872362a350e249bbed.png?size=256')
+            .setThumbnail('https://cdn.discordapp.com/avatars/728176491514298478/8471d6241e5ef2dd2796d87149cf6d98.png')
             .addField('Help Website', '[Top.gg](https://top.gg/bot/728176491514298478)')
-            .addField('Support server','[Support Server](https://discord.gg/smBNsAX)')
-            .addField('Version', 'Update 21-1.5')
+            .addField('Support server','[Join Now](https://discord.gg/smBNsAX)')
+            .addField(`Changelog`,`[Click to Read](https://discord.com/channels/769091418118946827/769091418589233182/868715106354216970)`)
+            .addField('Version', 'Update 21-21.11')
+            .addField('Message from Dev', 'Hello! Thanks for using my bot.\nYou are awesome :)', true)
             .setColor("YELLOW")
 
         if(message.channel.type == 'dm') return message.channel.send(Einfo);
