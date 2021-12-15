@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
 const mathjs = require('mathjs');
+const emojiFromText = require("emoji-from-text");
 const config = require('./config.json')
 const PREFIX = config.prefix
 
