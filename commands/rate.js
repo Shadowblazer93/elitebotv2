@@ -9,33 +9,16 @@ module.exports = {
             .setDescription('**Usage** : ``;rate [topic]``')
             .setColor("RED")
 
-        
-        if(message.channel.type == 'dm'){
-            let dmrate = args.slice(0).join(" ")
-            if(!dmrate) return message.channel.send(Erate)
-            let dmrateno = Math.floor(Math.random() * 11)
-            let ratemessage = (`I would rate ${dmrate} a \`\`` + dmrateno + `/10\`\``)
+        if(!message.channel.type == 'dm'){if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')} 
             
-            message.channel.send(ratemessage.replace('my','your'))
-
-            // message.channel.send(`I would rate \`\`${dmrate}\`\` a \`\`` + dmrateno + `/10\`\``).catch(err => {return;})
-        return}
-
-
-
-
-        if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.') 
-            
-            let rateduser = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member
-
+        //if(message.channel.type == 'dm'){let rateduser = message.author}
+        //if(!message.channel.type == 'dm'){let rateduser = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || message.member}
             let ratenumber = Math.floor(Math.random() * 11)
-
             let ratedtopic = args.slice(0).join(" ")
-
-
-            if(!ratedtopic) {return message.channel.send(`I would rate ${message.member} a \`\`` + ratenumber + `/10\`\``)} else {
+            if(!ratedtopic) {return message.channel.send(`I would rate ${message.author} a \`\`` + ratenumber + `/10\`\``)} else {
             let ratedmsg = (`I would rate ${ratedtopic} a \`\`` + ratenumber + `/10\`\``)
-            message.channel.send(ratedmsg.replace('my','your'))
+            let finalrate = ratedmsg.replace('my', 'your').replace('me', 'you')
+            message.channel.send(finalrate)
             }
 
         }

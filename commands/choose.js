@@ -11,7 +11,7 @@ module.exports = {
 
         const Echoose = new Discord.MessageEmbed()
         .setTitle('Choose')
-        .setDescription('`;choose [choice1] | [choice2]`')
+        .setDescription('`;choose [choice1] + [choice2]`')
         .setColor("RED")
 
 
@@ -23,12 +23,12 @@ module.exports = {
         let choicenumber = Math.floor(Math.random() * 2)
 
         const Echoice1 = new Discord.MessageEmbed()
-        .setDescription('```' + choose1 + '```')
+        .setDescription(choose1)
         .setFooter(`Choice by ${message.author.username}`, message.author.displayAvatarURL())
         .setColor("GREEN")
 
         const Echoice2 = new Discord.MessageEmbed()
-        .setDescription('```' + choose2[1] + '```')
+        .setDescription(choose2[1])
         .setFooter(`Choice by ${message.author.username}`, message.author.displayAvatarURL())
         .setColor("GREEN")
 

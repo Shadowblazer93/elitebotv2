@@ -4,6 +4,7 @@ module.exports = {
     name: 'key',
     description: 'Give a steam key to a user',
     execute(message, args){
+            if(message.author.id == !'411548232133640203') return message.channel.send("This is a dev only command!")
             if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
 
             if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('Please give me permissions to send messages.')

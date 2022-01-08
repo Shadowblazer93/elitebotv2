@@ -9,7 +9,7 @@ module.exports = {
 
             const embedsyn = new Discord.MessageEmbed()
             .setTitle('Embed')
-            .setDescription('**Usage** : ``;embed [title]|[body]|(colour)``\n**Permissions** : Manage_Messages\n**IMPORTANT** : Seperate parts of the embed using |')
+            .setDescription('**Usage** : ``;embed [title]+[body]+(colour)``\n**Permissions** : Manage_Messages\n**IMPORTANT** : Seperate parts of the embed using +')
             .setColor("RED")
 
             if(!message.member.hasPermission(("MANAGE_MESSAGES"))) return ('ERROR : Must have Manage Messages permission to create a new embed.')
@@ -18,15 +18,11 @@ module.exports = {
             if(!embedparts) return message.channel.send(embedsyn)
 
             let embedsub = embedparts.substring(6)
-
-            let embedfinal = embedsub.split('|')
-
+            let embedfinal = embedsub.split('+')
             let emtitle = embedfinal[0]
             if(!embedfinal[0]) return message.channel.send(embedsyn)
-
             let embody = embedfinal[1]
             if(!embedfinal[1]) return message.channel.send('Please specify the body of your embed')
-
             let emcolour = embedfinal[2]
             if(emcolour) emcolour = embedfinal[2].toUpperCase().substring(" ")
             if(!embedfinal[2]) emcolour = 'RANDOM'

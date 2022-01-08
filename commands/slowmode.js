@@ -17,7 +17,7 @@ module.exports = {
         .setColor("RED")
 
         let slowchannel = message.channel
-        let slowtime = args.slice(0).join(" ")
+        let slowtime = args[0]
         if(!slowtime) return message.channel.send(Eslowmode)
         let nonmstime = ms(slowtime)
 
@@ -46,8 +46,8 @@ module.exports = {
             return;
 
         } else {
-            if(nonmstime < 0) return message.channel.send(`❌ Please enter a valid number! [${message.author}]`)
-            if(nonmstime > 21600) return message.channel.send(`❌ Please enter a number below 6 hours! [${message.author}]`)
+            if(nonmstime < 0) return message.channel.send(`❌ Please enter a valid number! ${message.author}`)
+            if(nonmstime > 21600) return message.channel.send(`❌ Please enter a number below 6 hours! ${message.author}`)
 
             slowchannel.setRateLimitPerUser(nonmstime).then(() => {
                 message.channel.send(slowmodeseconds)

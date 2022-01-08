@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'kick',
     description: 'kicks the user specified',
-    execute(message, args){
+    execute(message, args, bot){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
 
         if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('I do not have permissions to speak in that channel!').catch(err => {return;})
@@ -17,6 +17,8 @@ module.exports = {
 
         let kuser = message.guild.members.cache.get(args[0]) || message.mentions.members.first()
         if(!kuser) return message.channel.send(Ekick)
+
+        if(message.member.roles.highest.comparePositionTo(kuser.roles.highest) < 0) return message.channel.send('❌ You are lower in role hierarchy than the user!')
 
         let kreason = args.slice(1).join(" ")
         if(!kreason) kreason = 'Undefined'
@@ -36,9 +38,13 @@ module.exports = {
         if(kuser) {
             kuser.kick(kreason).then(() => {
                message.channel.send(Eked)
+               if(!message.author.bot) {
+                   kuser.send(Eked).catch(err => {return;})
+                   message.channel.send(`Sent a message stating their mute and reason in their dm ${bot.emojis.cache.get("771258865877909517")}`)
+               }
                if(modchannel) modchannel.send(Eked)
             }).catch(err => {
-            message.reply(' Either I do not have permissions or that person is a moderator/admin . Place my role at the top in your Server\'s role settings.') })
+            message.reply(' Either I do not have permissions or that person is a moderator/admin\nPlace my role at the top in your Server\'s role settings.') })
         } else {
             message.reply('Please choose a valid member from this server!')
         }

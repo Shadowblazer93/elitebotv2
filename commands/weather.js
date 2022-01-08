@@ -20,7 +20,7 @@ module.exports = {
                 if(error) return message.channel.send(error);
                 if(!args[0]) return message.channel.send('Please specify a location')
         
-                if(result === undefined || result.length === 0) return message.channel.send('Invalid location');
+                if(typeof result === undefined || result.length === 0) return message.channel.send('Invalid location');
         
                 var current = result[0].current;
                 var location = result[0].location;
@@ -36,14 +36,8 @@ module.exports = {
                 .addField('Feels like', `${current.skytext}°`, true)
                 .addField('Humidity', `${current.humidity}`, true)
                 .setColor("0x990632")
-
-            if(message.channel.type == 'dm'){
-                message.channel.send(weatherinfo).catch(err => {
-                    message.channel.send('❔ Something went wrong.')
-                })
-            return;}
         
-            if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')
+            if(!message.chanel.type == 'dm') {if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')}
                 message.channel.send(weatherinfo).catch(err => {
                     message.channel.send('Im having a headache. Please try again later.')
                 })

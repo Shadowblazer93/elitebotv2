@@ -23,15 +23,20 @@ module.exports = {
             if(!nickuser) return message.channel.send(Enick)
 
             let nick = args.slice(1).join(" ")
-            if(!nick) return message.channel.send('❌You did not specify the nickname I should give to ``' + nickuser.displayName + '``').catch(err => {
-                message.channel.send('❌Invalid user!')
-            })
+            if(!nick) return message.channel.send('❌You did not specify the nickname I should give to ``' + nickuser.displayName + '``')
+
+            //if(nick) return message.channel.send(`${message.member.roles.highest} and ${nickuser.roles.highest}`)
+            if(message.member.roles.highest.comparePositionTo(nickuser.roles.highest) < 0) return message.channel.send('❌ You are lower in role hierarchy than the user!')
 
             nickuser.setNickname(nick).catch(err => {
                 return message.channel.send(nickerror);
             })
+            
+            async function nickset() {
+            let nickmsg = await message.channel.send(`Changing ${nickuser}'s nickname to ${nick}...`).then(() => {
+            nickmsg.edit(`✅ Changed ${nickuser}'s nickname to ${nick}`)})}
 
-            message.channel.send(`Changing ${nickuser}'s nickname to ${nick}...`)
+            nickset().catch(err => {return})
             
     }
 }

@@ -9,7 +9,6 @@ module.exports = {
         .setThumbnail('https://cdn.discordapp.com/avatars/728176491514298478/61125c07e7c80e872362a350e249bbed.png?size=512')
         .addField('Invite','[Invite Elite bot](https://discordapp.com/oauth2/authorize?client_id=728176491514298478&scope=bot&permissions=268954742)')
         .addField('Support Server','[Join Support Server](https://discord.gg/smBNsAX)')
-        .setFooter(`Elite Bot created by Shadowblazer93`, "https://cdn.discordapp.com/avatars/411548232133640203/a_c955646bfb90ce606b888800d98f236b.webp")
         .setColor("BLUE")
 
         if(message.channel.type == 'dm') return message.channel.send(Einvite)

@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'ban',
     description: 'ban users from the guild',
-    execute(message, args){
+    execute(message, args, bot){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
 
 
@@ -18,6 +18,8 @@ module.exports = {
 
         let buser = message.guild.members.cache.get(args[0]) || message.mentions.members.first() || args[0]
         if(!buser) return message.channel.send(Eban)
+
+        if(message.member.roles.highest.comparePositionTo(buser.roles.highest) < 0) return message.channel.send('❌ You are lower in role hierarchy than the user!')
 
         let breason = args.slice(1).join(" ")
         if(!breason) breason = 'Undefined'
@@ -35,6 +37,10 @@ module.exports = {
 
         buser.ban({reason: breason}).then(() => {
           message.channel.send(Ebanned)
+          if(!message.author.bot) {
+              buser.send(Ebanned).catch(err => {return;})
+              message.channel.send(`Sent a message stating their ban and reason in their dm ${bot.emojis.cache.get("771258865877909517")}`)
+          }
           if(modchannel) modchannel.send(Ebanned)
         }).catch(err => {
             message.channel.send(`I can't ban someone with a role higher than me!`)

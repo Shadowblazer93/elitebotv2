@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'mute',
     description: 'mutes the user specified',
-    execute(message, args){
+    execute(message, args, bot){
         if(message.channel.type == 'dm') return message.channel.send('❌ I can\'t execute that command in DMs!')
 
         if(!message.guild.me.hasPermission("SEND_MESSAGES")) return message.author.send('I do not have permissions to speak in that channel!').catch(err => {return;})
@@ -18,6 +18,8 @@ module.exports = {
 
         let muser = message.guild.members.cache.get(args[0]) || message.mentions.members.first()
         if(!muser) return message.channel.send(Emute)
+
+        if(message.member.roles.highest.comparePositionTo(muser.roles.highest) < 0) return message.channel.send('❌ You are lower in role hierarchy than the user!')
 
 
         const Emutesetup = new Discord.MessageEmbed()
@@ -47,11 +49,18 @@ module.exports = {
         if(fetchedrole){
 
           if(muser.roles.cache.has(fetchedrole.id)) return message.channel.send(Emutealreadyhas)
+          //if(muser.id === message.author.id) return message.channel.send('I agree, you should be muted. Considering how dumb you are')
+          if(muser.id === "728176491514298478") return message.channel.send('Why mute me? Stop messing around!')
 
           if(muser){muser.roles.add(fetchedrole.id).then(() => {
             message.channel.send(Emutesuccess)
+            if(!message.author.bot) {
+              muser.send(Emutesuccess).catch(err => {return;})
+              message.channel.send(`Sent a message stating their mute and reason in their dm ${bot.emojis.cache.get("771258865877909517")}`)
+            }
+
             if(modchannel) modchannel.send(Emutesuccess)
-          }).catch(err => {message.channel.send('The muted role is higher in heirarchy to my role!\nGo to the roles tab and set my role to the top.')})
+          }).catch(err => {return message.channel.send('The Muted Role is higher in hierarchy than my role!\nPut my role higher in the hierarchy from roles menu')})
           return;
         }}
 
