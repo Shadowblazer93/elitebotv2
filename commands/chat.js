@@ -20,7 +20,8 @@ module.exports = {
         message.channel.startTyping();
         
         let creply = await chat.chat(chatinput);
-        message.channel.send(creply).then(() => {message.channel.stopTyping()}).catch(err => {message.channel.send("Sorry, I have a severe headache right now! (sussy)")})
+        let finalcreply = creply.replace('Lebyy_Dev','Sb93')
+        message.channel.send(finalcreply).then(() => {message.channel.stopTyping()}).catch(err => {message.channel.send("Sorry, I have a severe headache right now! (sussy)")})
         }
         chatoutput().then(() => {return})
     }}

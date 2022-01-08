@@ -37,7 +37,6 @@ module.exports = {
                 .addField('Humidity', `${current.humidity}`, true)
                 .setColor("0x990632")
         
-            if(!message.chanel.type == 'dm') {if (!message.guild.me.hasPermission("SEND_MESSAGES")) return  message.author.send('Please give me permissions to send messages.')}
                 message.channel.send(weatherinfo).catch(err => {
                     message.channel.send('Im having a headache. Please try again later.')
                 })
